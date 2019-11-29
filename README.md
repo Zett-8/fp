@@ -20,3 +20,11 @@ now you got fortune paper!!
 
 ![sample](https://github.com/Zett-8/images/blob/master/fp.png)  
 enjoy coding :)
+
+  
+  
+
+---
+#### * No spoiler
+I just made quotes file unreadable.  
+Don't cheap! Write code and push :)
