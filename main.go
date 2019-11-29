@@ -30,12 +30,6 @@ func main() {
 		os.Exit(0)
 	}
 
-	//// todo: delete later
-	//err = printFortune()
-	//if err != nil {
-	//	fmt.Println("error")
-	//}
-
 	fmt.Println(string(out))
 }
 
