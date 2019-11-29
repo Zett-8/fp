@@ -1,16 +1,20 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"fp/quote"
+	"fp/terminal"
+	"math"
 	"math/rand"
 	"os"
 	"os/exec"
+	"strings"
 	"time"
 )
 
 func main() {
 	args := os.Args[1:]
+
 	out, err := exec.Command("git", args...).CombinedOutput()
 	if err != nil {
 		fmt.Println(string(out))
@@ -26,32 +30,42 @@ func main() {
 		os.Exit(0)
 	}
 
+	//// todo: delete later
+	//err = printFortune()
+	//if err != nil {
+	//	fmt.Println("error")
+	//}
+
 	fmt.Println(string(out))
 }
 
-
 func printFortune() error {
-	var quotes []string
-
-	f, err := os.Open("quotes.txt")
+	width, err := terminal.Width()
 	if err != nil {
 		return err
 	}
-	defer f.Close()
 
-	sc := bufio.NewScanner(f)
-	for sc.Scan() {
-		quotes = append(quotes, sc.Text())
+	quotes, err := quote.Import()
+	if err != nil {
+		return err
 	}
 
 	rand.Seed(time.Now().UnixNano())
 	ran := int32(len(quotes))
+	q := crp(quotes[rand.Int31n(ran)])
 
-	fmt.Println(crp(quotes[rand.Int31n(ran)]))
+	whiteSpace := math.Max((float64(width)-float64(len(q)))/2, 0)
+
+	fmt.Println("")
+	fmt.Println("  %%" + strings.Repeat("~", int(width)-8) + "%%  ")
+	fmt.Println("")
+	fmt.Println(strings.Repeat(" ", int(whiteSpace)) + q)
+	fmt.Println("")
+	fmt.Println("  %%" + strings.Repeat("~", int(width)-8) + "%%  ")
+	fmt.Println("")
 
 	return nil
 }
-
 
 func crp(S string) string {
 	var n string
