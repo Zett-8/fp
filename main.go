@@ -19,7 +19,10 @@ func main() {
 
 	if args[0] == "push" {
 		fmt.Println(string(out))
-		printFortune()
+		err := printFortune()
+		if err != nil {
+			fmt.Println("Sorry! No fortune paper because of error!")
+		}
 		os.Exit(0)
 	}
 
@@ -27,13 +30,12 @@ func main() {
 }
 
 
-func printFortune() {
+func printFortune() error {
 	var quotes []string
 
 	f, err := os.Open("quotes.txt")
 	if err != nil {
-		fmt.Println(string(out))
-		os.Exit(0)
+		return err
 	}
 	defer f.Close()
 
@@ -46,6 +48,8 @@ func printFortune() {
 	ran := int32(len(quotes))
 
 	fmt.Println(crp(quotes[rand.Int31n(ran)]))
+
+	return nil
 }
 
 
