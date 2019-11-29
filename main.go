@@ -5,27 +5,41 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"os/exec"
 	"time"
 )
 
 func main() {
 	var quotes []string
 
-	f, err := os.Open("quotes.txt")
+	args := os.Args[1:]
+	out, err := exec.Command("git push", args...).CombinedOutput()
 	if err != nil {
-		fmt.Println(err)
-	}
-	defer f.Close()
-
-	sc := bufio.NewScanner(f)
-	for sc.Scan() {
-		quotes = append(quotes, de(sc.Text()))
+		fmt.Println(string(out))
+		os.Exit(0)
 	}
 
-	rand.Seed(time.Now().UnixNano())
-	ran := int32(len(quotes))
+	if args[0] == "push" {
+		f, err := os.Open("quotes.txt")
+		if err != nil {
+			fmt.Println(string(out))
+			os.Exit(0)
+		}
+		defer f.Close()
 
-	fmt.Println(quotes[rand.Int31n(ran)])
+		sc := bufio.NewScanner(f)
+		for sc.Scan() {
+			quotes = append(quotes, sc.Text())
+		}
+
+		rand.Seed(time.Now().UnixNano())
+		ran := int32(len(quotes))
+
+		fmt.Println(de(quotes[rand.Int31n(ran)]))
+		os.Exit(0)
+	}
+
+	fmt.Println(string(out))
 }
 
 //func en(S string) string {
