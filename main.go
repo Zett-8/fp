@@ -5,42 +5,51 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"os/exec"
 	"time"
 )
 
 func main() {
+	args := os.Args[1:]
+	out, err := exec.Command("git", args...).CombinedOutput()
+	if err != nil {
+		fmt.Println(string(out))
+		os.Exit(0)
+	}
+
+	if args[0] == "push" {
+		fmt.Println(string(out))
+		printFortune()
+		os.Exit(0)
+	}
+
+	fmt.Println(string(out))
+}
+
+
+func printFortune() {
 	var quotes []string
 
 	f, err := os.Open("quotes.txt")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println(string(out))
+		os.Exit(0)
 	}
 	defer f.Close()
 
 	sc := bufio.NewScanner(f)
 	for sc.Scan() {
-		quotes = append(quotes, de(sc.Text()))
+		quotes = append(quotes, sc.Text())
 	}
 
 	rand.Seed(time.Now().UnixNano())
 	ran := int32(len(quotes))
 
-	fmt.Println(quotes[rand.Int31n(ran)])
+	fmt.Println(crp(quotes[rand.Int31n(ran)]))
 }
 
-//func en(S string) string {
-//	var n string
-//	for _, s := range S {
-//		if string(s) == " " {
-//			n += " "
-//		} else {
-//			n += string(s - rune(1))
-//		}
-//	}
-//	return n
-//}
 
-func de(S string) string {
+func crp(S string) string {
 	var n string
 	for _, s := range S {
 		if string(s) == " " {
