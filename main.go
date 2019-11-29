@@ -13,7 +13,7 @@ func main() {
 	var quotes []string
 
 	args := os.Args[1:]
-	out, err := exec.Command("git push", args...).CombinedOutput()
+	out, err := exec.Command("git", args...).CombinedOutput()
 	if err != nil {
 		fmt.Println(string(out))
 		os.Exit(0)
