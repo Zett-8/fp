@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/Zett-8/fp/quote"
 	"github.com/Zett-8/fp/terminal"
 	"math"
 	"math/rand"
@@ -35,10 +34,11 @@ func printFortune() error {
 		return err
 	}
 
-	quotes, err := quote.Import()
+	qb, err := Asset("quotes.txt")
 	if err != nil {
 		return err
 	}
+	quotes:= strings.Split(string(qb), "\n")
 
 	rand.Seed(time.Now().UnixNano())
 	ran := int32(len(quotes))
