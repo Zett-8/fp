@@ -12,7 +12,7 @@ go get github.com/Zett-8/fp
 
 just replace 'git push' command with 'fp'
 ```terminal
-fp push origin master
+fp origin master
 ```
 
 that's it!  
