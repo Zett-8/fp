@@ -10,7 +10,7 @@ go get github.com/Zett-8/fp
 
 ### how to use
 
-just replace 'git' command with 'fp'
+just replace 'git push' command with 'fp'
 ```terminal
 fp push origin master
 ```
