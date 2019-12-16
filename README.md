@@ -18,7 +18,7 @@ fp push origin master
 that's it!  
 now you got fortune paper!!
 
-![sample](https://github.com/Zett-8/images/blob/master/fp.png)  
+![sample](https://github.com/Zett-8/images/blob/master/fp-sc.png)  
 enjoy coding :)
 
   
