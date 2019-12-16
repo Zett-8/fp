@@ -8,7 +8,7 @@ import (
 func Import() ([]string, error) {
 	var quotes []string
 
-	f, err := os.Open("quotes.txt")
+	f, err := os.Open("../quotes.txt")
 	if err != nil {
 		return nil, err
 	}
