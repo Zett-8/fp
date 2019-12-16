@@ -14,23 +14,19 @@ import (
 
 func main() {
 	args := os.Args[1:]
+	args = append([]string{"push"}, args...)
 
 	out, err := exec.Command("git", args...).CombinedOutput()
-	if err != nil {
-		fmt.Println(string(out))
-		os.Exit(0)
-	}
-
-	if args[0] == "push" {
-		fmt.Println(string(out))
-		err := printFortune()
-		if err != nil {
-			fmt.Println("Sorry! No fortune paper because of error!")
-		}
-		os.Exit(0)
-	}
-
 	fmt.Println(string(out))
+	if err != nil {
+		os.Exit(0)
+	}
+
+	err = printFortune()
+	if err != nil {
+		fmt.Println("Sorry! No fortune paper because of error!")
+	}
+	os.Exit(0)
 }
 
 func printFortune() error {
