@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"fp/quote"
-	"fp/terminal"
+	"github.com/Zett-8/fp/quote"
+	"github.com/Zett-8/fp/terminal"
 	"math"
 	"math/rand"
 	"os"
