@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/Zett-8/fp/terminal"
 	"math"
 	"math/rand"
 	"os"
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/zett-8/fp/terminal"
 )
 
 func main() {
@@ -38,7 +39,7 @@ func printFortune() error {
 	if err != nil {
 		return err
 	}
-	quotes:= strings.Split(string(qb), "\n")
+	quotes := strings.Split(string(qb), "\n")
 
 	rand.Seed(time.Now().UnixNano())
 	ran := int32(len(quotes))
