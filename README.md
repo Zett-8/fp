@@ -1,11 +1,11 @@
 # Fortune Push
 
-Get your fortune paper by git push!
+*Get your fortune paper by git push!*
 
 
 ### install
 ```terminal
-go get github.com/Zett-8/fp
+go get github.com/zett-8/fp
 ```
 
 ### how to use
@@ -15,17 +15,8 @@ just replace 'git push' command with 'fp'
 fp origin master
 ```
 
-that's it!  
-now you got fortune paper!!
+That's it!  
+Every time you push to Github using 'fp' command you'll get your fortune paper!!
 
 ![sample](https://github.com/Zett-8/images/blob/master/fp-sc.png)  
 enjoy coding :)
-
-  
-  
-
-
----
-#### * No spoiler
-I just made quotes file unreadable.  
-Don't cheap! Write code and push :)
