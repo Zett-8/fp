@@ -5,7 +5,7 @@
 
 ### install
 ```terminal
-go get github.com/zett-8/fp
+go install github.com/zett-8/fp
 ```
 
 ### how to use
